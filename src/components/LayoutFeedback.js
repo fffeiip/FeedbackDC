@@ -7,51 +7,42 @@
  */
 
 import React, {Fragment} from 'react';
+import Emoji from 'react-native-emoji';
 import {
   StyleSheet,
   ScrollView,
   View,
   Text,
-  TextInput,
-  StatusBar,
   SafeAreaView,
-  KeyboardAvoidingView,
   FlatList,
-  TouchableOpacity,
 } from 'react-native';
 
 import {
-  Header,
-  LearnMoreLinks,
   Colors,
-  DebugInstructions,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
 
-class DisciplinasProfessor extends React.Component {
+class LayoutFeedback extends React.Component {
   state = {
     data: [
-      { id: "00", name: "Metodologias Ágeis" },
-      { id: "01", name: "Banco de Dados" },
-      { id: "02", name: "Egenharia de Software" },
-      { id: "03", name: "Projetão" }
+      { id: "00", name: "Achei massa!", emoji: "+1" },
+      { id: "01", name: "Topster" , emoji: "+1"},
+      { id: "02", name: "Fala muito alto!", emoji: "slightly_frowning_face" },
+      { id: "03", name: "Escreve muito!" , emoji: "slightly_frowning_face" },
+      { id: "04", name: "Só lê slide" , emoji: "slightly_frowning_face" },
+      { id: "05", name: "Amei a aula!" , emoji: "+1" }
     ]
   };
   render() {
     return (
-      <KeyboardAvoidingView
+      <View
                 style={{ flex: 1 }}
                 behavior='position'
                 enabled>
               <View style={styles.header}>
-                  <Text style={styles.title}>Disciplinas Cadastradas</Text>
+                  <Text style={styles.title}>Feedbacks - Disciplina X</Text>
                   
                   
-              </View>
-              <View style={styles.viewInput}>
-                <TextInput style={styles.textInput} placeholder="Pesquisar Disciplinas">
-                </TextInput>
               </View>
              
       <SafeAreaView>
@@ -61,13 +52,14 @@ class DisciplinasProfessor extends React.Component {
           renderItem={({ item }) => {
             return (
               <View style={styles.item}>
+                  <Emoji name={item.emoji}></Emoji>
                 <Text style={styles.text}>{item.name}</Text>
               </View>
             );
           }}
         /></View>
       </SafeAreaView>
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
@@ -139,5 +131,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DisciplinasProfessor;
+export default LayoutFeedback;
 
