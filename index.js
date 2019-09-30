@@ -8,4 +8,4 @@ import DisciplinasProfessor from './src/components/LayoutDisciplinasProfessor';
 import Feedbacks from './src/components/LayoutFeedback';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => Feedbacks);
+AppRegistry.registerComponent(appName, () => Login);

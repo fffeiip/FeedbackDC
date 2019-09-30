@@ -33,7 +33,7 @@ class LayoutDisciplinasProfessor extends React.Component {
   };
   render() {
     return (
-      <KeyboardAvoidingView
+      <View
                 style={{ flex: 1 }}
                 behavior='position'
                 enabled>
@@ -60,7 +60,7 @@ class LayoutDisciplinasProfessor extends React.Component {
           }}
         /></View>
       </SafeAreaView>
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
