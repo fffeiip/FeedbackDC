@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, { Fragment } from 'react';
+import React, { Fragment,Component } from 'react';
 import {
   StyleSheet,
   View,
@@ -20,40 +20,48 @@ import {
 } from 'react-native';
 
 
-const Login = () => {
-  return (
-    <Fragment>
-
-      <StatusBar backgroundColor='#f09' />
-      <SafeAreaView>
-        <ScrollView>
-          <KeyboardAvoidingView
-            style={{ flex: 1 }}
-            behavior='position'
-            enabled>
-            <View style={styles.header}>
-              <Text style={styles.title}>
-                FeedbackDC
-              </Text>
-            </View>
-            <View style={styles.viewInput}>
-              <Text>LOGIN</Text>
-              <TextInput style={styles.textInput} placeholder="Usuário">
-              </TextInput>
-              <Text>Senha</Text>
-              <TextInput style={styles.textInput} keyboardType={'numeric'} placeholder="Senha">
-              </TextInput>
-            </View>
-            <View style={styles.containerButton}>
-              <TouchableOpacity style={styles.button}>
-                <Text>Login</Text>
-              </TouchableOpacity>
-            </View>
-          </KeyboardAvoidingView>
-        </ScrollView>
-      </SafeAreaView>
-    </Fragment>
-  );
+class Login extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      usuario: '',
+      senha: '',
+    }
+  }
+  render(){
+    return (
+      <Fragment>
+        <StatusBar backgroundColor='#f09' />
+        <SafeAreaView>
+          <ScrollView>
+            <KeyboardAvoidingView
+              style={{ flex: 1 }}
+              behavior='position'
+              enabled>
+              <View style={styles.header}>
+                <Text style={styles.title}>
+                  FeedbackDC
+                </Text>
+              </View>
+              <View style={styles.viewInput}>
+                <Text>LOGIN</Text>
+                <TextInput style={styles.textInput} placeholder="Usuário">
+                </TextInput>
+                <Text>Senha</Text>
+                <TextInput style={styles.textInput} keyboardType={'numeric'} placeholder="Senha">
+                </TextInput>
+              </View>
+              <View style={styles.containerButton}>
+                <TouchableOpacity style={styles.button}>
+                  <Text>Login</Text>
+                </TouchableOpacity>
+              </View>
+            </KeyboardAvoidingView>
+          </ScrollView>
+        </SafeAreaView>
+      </Fragment>
+    );
+  }
 };
 
 
