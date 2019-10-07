@@ -7,6 +7,7 @@
  */
 
 import React, { Fragment,Component } from 'react';
+
 import {
   StyleSheet,
   View,
@@ -28,6 +29,23 @@ class Login extends Component {
       senha: '',
     }
   }
+
+  loginAva = () => {
+      try{        
+        let response = fetch('http://ava.ufrpe.br/login/token.php',{
+          method: 'POST',
+          body: JSON.stringify({
+            'username': this.state.usuario,
+            'password': this.state.senha,
+            'service': 'moodle_mobile_app'            
+          })
+        })
+        console.log(response)     
+      } catch(error){
+        console.log(error)  
+      }
+
+  }
   render(){
     return (
       <Fragment>
@@ -45,14 +63,14 @@ class Login extends Component {
               </View>
               <View style={styles.viewInput}>
                 <Text>LOGIN</Text>
-                <TextInput style={styles.textInput} placeholder="Usuário">
+                <TextInput style={styles.textInput} onChangeText={usuario => this.setState({usuario})} placeholder="Usuário">
                 </TextInput>
                 <Text>Senha</Text>
-                <TextInput style={styles.textInput} keyboardType={'numeric'} placeholder="Senha">
+                <TextInput style={styles.textInput} onChangeText={senha => this.setState({senha})} placeholder="Senha" secureTextEntry={true} textContentType="password">
                 </TextInput>
               </View>
               <View style={styles.containerButton}>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity onPress={this.loginAva} style={styles.button}>
                   <Text>Login</Text>
                 </TouchableOpacity>
               </View>
