@@ -8,6 +8,7 @@
 
 import React, { Fragment,Component } from 'react';
 
+import ava from '../services/avaApi'
 import {
   StyleSheet,
   View,
@@ -31,21 +32,24 @@ class Login extends Component {
   }
 
   loginAva = () => {
-      try{        
-        let response = fetch('http://ava.ufrpe.br/login/token.php',{
-          method: 'POST',
-          body: JSON.stringify({
+      const response = ava.post('/login/token.php',{
+        method: 'POST',        
+        body: JSON.stringify({          
             'username': this.state.usuario,
             'password': this.state.senha,
-            'service': 'moodle_mobile_app'            
-          })
+            'service': 'moodle_mobile_app'           
         })
-        console.log(response)     
-      } catch(error){
-        console.log(error)  
-      }
-
+      })
+      .then((response)=>{
+        alert(response.status)
+      }) 
+      .catch((error)=>{
+        alert("deu ruim")
+        alert(error)
+      })
   }
+  
+
   render(){
     return (
       <Fragment>
