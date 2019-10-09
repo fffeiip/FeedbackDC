@@ -32,7 +32,24 @@ class Login extends Component {
   }
 
   loginAva = () => {
-      const response = ava.post('/login/token.php',{
+
+      let data = {
+        username: this.state.usuario,
+        password: this.state.senha,
+        service: 'moodle_mobile_app'           
+      }
+      const response = ava.post('/login/token.php', data)
+      .then((response)=>{
+        console.log(response.headers)
+        alert(response.status)
+      }) 
+      .catch((error)=>{
+        alert("deu ruim")
+        alert(error)
+      })
+  }
+  loginAva2 = async () => {
+      const response = await fetch('http://ava.ufrpe.br/login/token.php',{
         method: 'POST',        
         body: JSON.stringify({          
             'username': this.state.usuario,
@@ -41,7 +58,10 @@ class Login extends Component {
         })
       })
       .then((response)=>{
-        alert(response.status)
+        let blob = response.blob()
+        console.log(response)
+        console.log(blob)
+        console.log(blob.data)
       }) 
       .catch((error)=>{
         alert("deu ruim")
