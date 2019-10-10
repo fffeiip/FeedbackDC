@@ -49,17 +49,17 @@ class Login extends Component {
       })
   }
   loginAva2 = async () => {
+    var data = new FormData()
+    data.append('username',this.state.usuario)
+    data.append('password',this.state.senha)
+    data.append('service','moodle_mobile_app')
       const response = await fetch('http://ava.ufrpe.br/login/token.php',{
         method: 'POST',   
-        headers: {
-          Accept: 'text/html,application/xhtml+xml,application/xml',
-          'Accept-Encoding': 'gzip,deflate'
-        },     
-        body: JSON.stringify({          
-            'username': this.state.usuario,
-            'password': this.state.senha,
-            'service': 'moodle_mobile_app'           
-        })
+        // headers: {
+          // Accept: 'text/html,application/xhtml+xml,application/xml',
+          // 'Accept-Encoding': 'gzip,deflate'
+        // },     
+        body: data
       })
       .then((response)=>{
         console.log(response)
