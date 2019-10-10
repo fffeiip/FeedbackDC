@@ -50,7 +50,11 @@ class Login extends Component {
   }
   loginAva2 = async () => {
       const response = await fetch('http://ava.ufrpe.br/login/token.php',{
-        method: 'POST',        
+        method: 'POST',   
+        headers: {
+          Accept: 'text/html,application/xhtml+xml,application/xml',
+          'Accept-Encoding': 'gzip,deflate'
+        },     
         body: JSON.stringify({          
             'username': this.state.usuario,
             'password': this.state.senha,
@@ -58,10 +62,8 @@ class Login extends Component {
         })
       })
       .then((response)=>{
-        let blob = response.blob()
         console.log(response)
-        console.log(blob)
-        console.log(blob.data)
+      
       }) 
       .catch((error)=>{
         alert("deu ruim")
@@ -94,7 +96,7 @@ class Login extends Component {
                 </TextInput>
               </View>
               <View style={styles.containerButton}>
-                <TouchableOpacity onPress={this.loginAva} style={styles.button}>
+                <TouchableOpacity onPress={this.loginAva2} style={styles.button}>
                   <Text>Login</Text>
                 </TouchableOpacity>
               </View>
