@@ -39,7 +39,7 @@ class LayoutDisciplinasProfessor extends React.Component {
                 enabled>
               <View style={styles.header}>
                   <Text style={styles.title}>Disciplinas Cadastradas</Text>
-                  
+                  {/* Mudar nme minhas disciplinas */}
                   
               </View>
               <View style={styles.viewInput}>

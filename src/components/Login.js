@@ -44,7 +44,7 @@ class Login extends Component {
       })
       .then((response)=>response.json())
       .then((responseJSON)=>{
-        console.log(responseJSON.token?responseJSON.token:responseJSON.error)      
+    alert(responseJSON.token?responseJSON.token:responseJSON.error)      
       }) 
       .catch((error)=>{
         //Nunca entra aqui ?
@@ -56,7 +56,8 @@ class Login extends Component {
   render(){
     return (
       <Fragment>
-        <StatusBar backgroundColor='#f09' />
+        <StatusBar backgroundColor='#0b99' />
+        {/* padronizar cores */}
         <SafeAreaView>
           <ScrollView>
             <KeyboardAvoidingView
@@ -69,7 +70,8 @@ class Login extends Component {
                 </Text>
               </View>
               <View style={styles.viewInput}>
-                <Text>LOGIN</Text>
+                <Text>Login</Text> 
+                {/* caps */}
                 <TextInput style={styles.textInput} onChangeText={usuario => this.setState({usuario})} placeholder="Usuário">
                 </TextInput>
                 <Text>Senha</Text>
@@ -79,6 +81,7 @@ class Login extends Component {
               <View style={styles.containerButton}>
                 <TouchableOpacity onPress={this.loginAva} style={styles.button}>
                   <Text>Login</Text>
+                  {/* entrar */}
                 </TouchableOpacity>
               </View>
             </KeyboardAvoidingView>
@@ -98,7 +101,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   header: {
-    backgroundColor: '#f09',
+    backgroundColor: '#0b99',
     alignItems: "center"
   },
   textInput: {

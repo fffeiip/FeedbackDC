@@ -43,6 +43,12 @@ class LayoutFeedback extends React.Component {
                 </View>
                 <SafeAreaView>
                     <View>
+                        {/* Ordenar os tipos de feedback, positivo/neutro/negativo nesta ordem
+                        emoji em cima
+                        algumas mensagens de feedback padronizadas, agrupar na lista, aparecer primeiro
+                        contagem de 'votos' na lista de disciplinas e na lista de feedbacks da disciplina
+                        deixar a quantidade de comentários aberta para os feedbacks
+                        */}
                         <FlatList
                             data={this.state.data}
                             keyExtractor={item => item.id}

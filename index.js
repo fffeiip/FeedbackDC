@@ -8,4 +8,5 @@ import DisciplinasProfessor from './src/components/LayoutDisciplinasProfessor';
 import Feedbacks from './src/components/LayoutFeedback';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => Login);
+AppRegistry.registerComponent(appName, () => Feedbacks);
+// deslogar em qualquer tela Portinha
