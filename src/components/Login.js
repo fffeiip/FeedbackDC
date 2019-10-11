@@ -8,7 +8,6 @@
 
 import React, { Fragment,Component } from 'react';
 
-import ava from '../services/avaApi'
 import {
   StyleSheet,
   View,
@@ -30,44 +29,26 @@ class Login extends Component {
       senha: '',
     }
   }
-
-  loginAva = () => {
-
-      let data = {
-        username: this.state.usuario,
-        password: this.state.senha,
-        service: 'moodle_mobile_app'           
-      }
-      const response = ava.post('/login/token.php', data)
-      .then((response)=>{
-        console.log(response.headers)
-        alert(response.status)
-      }) 
-      .catch((error)=>{
-        alert("deu ruim")
-        alert(error)
-      })
-  }
-  loginAva2 = async () => {
+  /**
+   * A API do ava retorna sempre o código 200(sucesso) independende de ter tido sucesso ou não. 
+   * Caso consiga uma resposta positiva, retorna um token , caso contrário retorna uma mensagem de erro (Mesmo não sinalizando o erro http)
+   */
+  loginAva = async () => {
     var data = new FormData()
     data.append('username',this.state.usuario)
     data.append('password',this.state.senha)
     data.append('service','moodle_mobile_app')
       const response = await fetch('http://ava.ufrpe.br/login/token.php',{
-        method: 'POST',   
-        // headers: {
-          // Accept: 'text/html,application/xhtml+xml,application/xml',
-          // 'Accept-Encoding': 'gzip,deflate'
-        // },     
-        body: data
+        method: 'POST',  
+        body: data             
       })
-      .then((response)=>{
-        console.log(response)
-      
+      .then((response)=>response.json())
+      .then((responseJSON)=>{
+        console.log(responseJSON.token?responseJSON.token:responseJSON.error)      
       }) 
       .catch((error)=>{
-        alert("deu ruim")
-        alert(error)
+        //Nunca entra aqui ?
+        console.log(error)
       })
   }
   
@@ -96,7 +77,7 @@ class Login extends Component {
                 </TextInput>
               </View>
               <View style={styles.containerButton}>
-                <TouchableOpacity onPress={this.loginAva2} style={styles.button}>
+                <TouchableOpacity onPress={this.loginAva} style={styles.button}>
                   <Text>Login</Text>
                 </TouchableOpacity>
               </View>
