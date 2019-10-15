@@ -6,8 +6,9 @@
  * @flow
  */
 
-import React, { Fragment,Component } from 'react';
-
+import React, { Fragment, Component } from 'react';
+import Header from './Header'
+import styles from '../Styles/Default'
 import {
   StyleSheet,
   View,
@@ -22,11 +23,12 @@ import {
 
 
 class Login extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       usuario: '',
       senha: '',
+      error: '',
     }
   }
   /**
@@ -35,29 +37,30 @@ class Login extends Component {
    */
   loginAva = async () => {
     var data = new FormData()
-    data.append('username',this.state.usuario)
-    data.append('password',this.state.senha)
-    data.append('service','moodle_mobile_app')
-      const response = await fetch('http://ava.ufrpe.br/login/token.php',{
-        method: 'POST',  
-        body: data             
+    data.append('username', this.state.usuario)
+    data.append('password', this.state.senha)
+    data.append('service', 'moodle_mobile_app')
+    const response = await fetch('http://ava.ufrpe.br/login/token.php', {
+      method: 'POST',
+      body: data
+    })
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        //fazer as outras requisições
+        resposta = responseJSON.token ? alert("Token: " + responseJSON.token) : this.setState({ error: responseJSON.error })
+
       })
-      .then((response)=>response.json())
-      .then((responseJSON)=>{
-    alert(responseJSON.token?responseJSON.token:responseJSON.error)      
-      }) 
-      .catch((error)=>{
+      .catch((error) => {
         //Nunca entra aqui ?
         console.log(error)
       })
   }
-  
 
-  render(){
+
+  render() {
     return (
       <Fragment>
-        <StatusBar backgroundColor='#0b99' />
-        {/* padronizar cores */}
+        <StatusBar backgroundColor='#306f' />
         <SafeAreaView>
           <ScrollView>
             <KeyboardAvoidingView
@@ -70,19 +73,21 @@ class Login extends Component {
                 </Text>
               </View>
               <View style={styles.viewInput}>
-                <Text>Login</Text> 
+                <Text>Login</Text>
                 {/* caps */}
-                <TextInput style={styles.textInput} onChangeText={usuario => this.setState({usuario})} placeholder="Usuário">
+                <TextInput style={styles.textInput} onChangeText={usuario => this.setState({ usuario })} placeholder="Usuário">
                 </TextInput>
                 <Text>Senha</Text>
-                <TextInput style={styles.textInput} onChangeText={senha => this.setState({senha})} placeholder="Senha" secureTextEntry={true} textContentType="password">
+                <TextInput style={styles.textInput} onChangeText={senha => this.setState({ senha })} placeholder="Senha" secureTextEntry={true} textContentType="password">
                 </TextInput>
               </View>
               <View style={styles.containerButton}>
                 <TouchableOpacity onPress={this.loginAva} style={styles.button}>
-                  <Text>Login</Text>
-                  {/* entrar */}
+                  <Text style={styles.textButton}>Entrar</Text>
                 </TouchableOpacity>
+              </View>
+              <View>
+                <Text style={styles.warningText}>{this.state.logou}</Text>
               </View>
             </KeyboardAvoidingView>
           </ScrollView>
@@ -92,51 +97,5 @@ class Login extends Component {
   }
 };
 
-
-const styles = StyleSheet.create({
-  title: {
-    padding: 20,
-    fontSize: 24,
-    color: '#ffffff',
-    fontWeight: "bold"
-  },
-  header: {
-    backgroundColor: '#0b99',
-    alignItems: "center"
-  },
-  textInput: {
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderRadius: 8,
-    fontSize: 16,
-    color: '#008b8b',
-    padding: 10,
-  },
-  viewInput: {
-    paddingHorizontal: 20
-  },
-  gasText: {
-    paddingVertical: 20,
-    fontSize: 20
-  },
-  containerButton: {
-    paddingVertical: 50,
-    alignItems: 'center'
-  },
-  button: {
-    backgroundColor: '#008b8b',
-    width: 100,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-  },
-  textButton: {
-    textAlign: 'center',
-    fontSize: 16,
-    alignSelf: "center",
-    color: '#ffffff'
-  }
-});
 
 export default Login;
