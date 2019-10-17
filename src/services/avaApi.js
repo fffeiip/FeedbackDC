@@ -1,7 +1,8 @@
-import axios from 'axios';
+import React,{Component} from 'react'
+export default class ApiAva extends Component {
+    state = {
+        token: '',
+        
+    }
 
-const avaApi = axios.create({
-    baseURL: 'http://ava.ufrpe.br'
-})
-
-export default avaApi
+}
