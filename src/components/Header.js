@@ -1,6 +1,6 @@
-import React, { Fragment, Component } from 'react'
+import React from 'react'
 import Emoji from 'react-native-emoji'
-import styles from '../Styles/Default'
+import styles from '../styles/Default'
 import {
     View,
     Text,

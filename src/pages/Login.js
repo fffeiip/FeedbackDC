@@ -1,16 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Fragment, Component } from 'react';
-import Header from './Header'
-import styles from '../Styles/Default'
+import Header from '../components/Header'
+import styles from '../styles/Default'
 import {
-  StyleSheet,
   View,
   Text,
   TextInput,
@@ -67,17 +58,12 @@ class Login extends Component {
               style={{ flex: 1 }}
               behavior='position'
               enabled>
-              <View style={styles.header}>
-                <Text style={styles.title}>
-                  FeedbackDC
-                </Text>
-              </View>
+              <Header titulo="Feedback Rural" ></Header>
               <View style={styles.viewInput}>
-                <Text>Login</Text>
-                {/* caps */}
+                <Text>LOGIN</Text>
                 <TextInput style={styles.textInput} onChangeText={usuario => this.setState({ usuario })} placeholder="Usuário">
                 </TextInput>
-                <Text>Senha</Text>
+                <Text>SENHA</Text>
                 <TextInput style={styles.textInput} onChangeText={senha => this.setState({ senha })} placeholder="Senha" secureTextEntry={true} textContentType="password">
                 </TextInput>
               </View>
