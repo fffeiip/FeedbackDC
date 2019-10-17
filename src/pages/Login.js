@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import Header from '../components/Header'
+import ava from '../services/avaApi'
 import styles from '../styles/Default'
 import {
   View,
@@ -22,23 +23,28 @@ class Login extends Component {
       error: '',
     }
   }
+  
   /**
    * A API do ava retorna sempre o código 200(sucesso) independende de ter tido sucesso ou não. 
    * Caso consiga uma resposta positiva, retorna um token , caso contrário retorna uma mensagem de erro (Mesmo não sinalizando o erro http)
    */
-  loginAva = async () => {
+  logaAva = token => {
+    response = ava.loginAva(token)
+  }
+
+  loginAva = () => {
     var data = new FormData()
     data.append('username', this.state.usuario)
     data.append('password', this.state.senha)
     data.append('service', 'moodle_mobile_app')
-    const response = await fetch('http://ava.ufrpe.br/login/token.php', {
+    const response = fetch('http://ava.ufrpe.br/login/token.php', {
       method: 'POST',
       body: data
     })
       .then((response) => response.json())
       .then((responseJSON) => {
         //fazer as outras requisições
-        resposta = responseJSON.token ? alert("Token: " + responseJSON.token) : this.setState({ error: responseJSON.error })
+        resposta = responseJSON.token ? this.logaAva(responseJSON.token): this.setState({ error: responseJSON.error })
 
       })
       .catch((error) => {
@@ -73,7 +79,7 @@ class Login extends Component {
                 </TouchableOpacity>
               </View>
               <View>
-                <Text style={styles.warningText}>{this.state.logou}</Text>
+                <Text style={styles.warningText}>{this.state.error}</Text>
               </View>
             </KeyboardAvoidingView>
           </ScrollView>
