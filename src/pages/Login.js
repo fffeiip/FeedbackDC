@@ -73,7 +73,7 @@ class Login extends Component {
                 </TouchableOpacity>
               </View>
               <View>
-                <Text style={styles.warningText}>{this.state.logou}</Text>
+                <Text style={styles.warningText}>{this.state.error}</Text>
               </View>
             </KeyboardAvoidingView>
           </ScrollView>
