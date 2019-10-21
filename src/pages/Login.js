@@ -14,7 +14,7 @@ import {
 
 
 class Login extends Component {
-  
+
   constructor(props) {
     super(props)
     this.state = {
@@ -60,6 +60,10 @@ class Login extends Component {
             this.setState({ userid: responseJSON.userid })
           })
           .then(() => {
+            var date = new Date()
+            var ano = date.getFullYear()
+            var semestre = date.getMonth() > 6 ? 2 : 1
+            var semestreAtual = ano + "." + semestre
             var data3 = new FormData()
             data3.append('wstoken', this.state.token)
             data3.append('wsfunction', 'core_user_get_users_by_id')
@@ -72,26 +76,20 @@ class Login extends Component {
               .then((responseJSON) => {
                 for (i = 1; i < responseJSON[0].enrolledcourses.length; i++) {
                   resp = responseJSON[0].enrolledcourses[i].fullname
-                  if (resp.includes('2019.2')) {
+                  if (resp.includes(semestreAtual)) {
                     console.log(responseJSON[0].enrolledcourses[i].fullname)
                   }
                 }
-              }).catch((error) => {
-                console.log(error)
-              })
+
+                console.log()
+              }).catch((error) => console.log(error))
           })
-          .catch((error) => {
-            //Nunca entra aqui ?
-            console.log(error)
-          })
+          .catch((error) => console.log(error))
       }
       )
-      .catch((error) => {
-        //Nunca entra aqui ?
-        console.log(error)
-      })
+      .catch((error) => console.log(error))
   }
- 
+
   render() {
     return (
       <Fragment>
@@ -102,7 +100,11 @@ class Login extends Component {
               style={{ flex: 1 }}
               behavior='position'
               enabled>
-              <Header titulo="Feedback Rural" ></Header>
+              <View style={styles.header}>
+                <Text style={styles.title}>
+                  Feedback UFRPE
+                </Text>
+              </View>
               <View style={styles.viewInput}>
                 <Text>LOGIN</Text>
                 <TextInput style={styles.textInput} onChangeText={usuario => this.setState({ usuario })} placeholder="Usuário">
