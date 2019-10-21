@@ -47,8 +47,15 @@ export default StyleSheet.create({
         paddingVertical: 50,
         alignItems: 'center'
     },
-    warningText:{
+    warningText: {
         alignSelf: 'center',
         color: '#f31f33'
+    },
+    item: {
+        alignItems: "center",
+        backgroundColor: "#15fb",
+        flexGrow: 1,
+        margin: 4,
+        padding: 20
     }
 })
