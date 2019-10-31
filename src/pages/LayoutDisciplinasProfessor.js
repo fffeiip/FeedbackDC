@@ -9,15 +9,8 @@ import Header from '../components/Header';
 
 
 class LayoutDisciplinasProfessor extends React.Component {
-  state = {
-    data: [
-      { id: "00", name: "Metodologias Ágeis" },
-      { id: "01", name: "Banco de Dados" },
-      { id: "02", name: "Egenharia de Software" },
-      { id: "03", name: "Projetão" }
-    ]
-  };
-  render() {
+   render() {
+    const {navigation} = this.props
     return (
       <View
         style={{ flex: 1 }}
@@ -26,7 +19,7 @@ class LayoutDisciplinasProfessor extends React.Component {
         <Header titulo="Minhas Disciplinas"></Header>
         <SafeAreaView>
           <View>
-            <Disciplinas item={this.state.data}></Disciplinas>
+            <Disciplinas item={navigation.getParam('disciplinas',[])}></Disciplinas>
           </View>
         </SafeAreaView>
       </View>

@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
-import Header from '../components/Header'
 import styles from '../styles/Default'
+
 import {
   View,
   Text,
@@ -25,7 +25,6 @@ class Login extends Component {
       userid: '',
     }
   }
-
   /**
    * A API do ava retorna sempre o código 200(sucesso) independende de ter tido sucesso ou não. 
    * Caso consiga uma resposta positiva, retorna um token , caso contrário retorna uma mensagem de erro (Mesmo não sinalizando o erro http)
@@ -33,6 +32,8 @@ class Login extends Component {
 
   loginAva = () => {
     var data = new FormData()
+
+    const { navigate } = this.props.navigation
     data.append('username', this.state.usuario)
     data.append('password', this.state.senha)
     data.append('service', 'moodle_mobile_app')
@@ -42,7 +43,6 @@ class Login extends Component {
     })
       .then((response) => response.json())
       .then((responseJSON) => {
-        // console.log(responseJSON.password) ELE EXIBE A SENHA - criptografar
         responseJSON.token ? this.setState({ token: responseJSON.token }) : this.setState({ error: responseJSON.error })
       })
       .then(() => {
@@ -54,43 +54,19 @@ class Login extends Component {
           body: data2
         })
           .then((response) => response.json())
-          .then((responseJSON) => {
-            console.log(responseJSON.firstname)
-            console.log(responseJSON.userpictureurl)
-            this.setState({ userid: responseJSON.userid })
-          })
-          .then(() => {
-            var date = new Date()
-            var ano = date.getFullYear()
-            var semestre = date.getMonth() > 6 ? 2 : 1
-            var semestreAtual = ano + "." + semestre
-            var data3 = new FormData()
-            data3.append('wstoken', this.state.token)
-            data3.append('wsfunction', 'core_user_get_users_by_id')
-            data3.append('userids[0]', this.state.userid)
-            const response = fetch('http://ava.ufrpe.br/webservice/rest/server.php?moodlewsrestformat=json', {
-              method: 'POST',
-              body: data3
+          .then(responseJSON => {
+            navigate('Perfil', {
+              name: responseJSON.firstname,
+              userid: responseJSON.userid,
+              token: this.state.token
             })
-              .then((response) => response.json())
-              .then((responseJSON) => {
-                for (i = 1; i < responseJSON[0].enrolledcourses.length; i++) {
-                  resp = responseJSON[0].enrolledcourses[i].fullname
-                  if (resp.includes(semestreAtual)) {
-                    console.log(responseJSON[0].enrolledcourses[i].fullname)
-                  }
-                }
-
-                console.log()
-              }).catch((error) => console.log(error))
           })
-          .catch((error) => console.log(error))
-      }
-      )
+      })
       .catch((error) => console.log(error))
   }
 
   render() {
+
     return (
       <Fragment>
         <StatusBar backgroundColor='#306f' />

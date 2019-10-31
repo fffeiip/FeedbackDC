@@ -13,7 +13,7 @@ const Disciplinas = props => (
         renderItem={({ item }) => {
             return (
                 <View style={styles.item}>
-                    <Text style={styles.textButton}>{item.name}</Text>
+                    <Text style={styles.textButton}>{item.fullname}</Text>
                 </View>
             )
         }}
