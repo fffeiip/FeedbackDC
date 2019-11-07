@@ -2,14 +2,16 @@
 import { createStackNavigator } from 'react-navigation-stack';
 import Login from '../pages/Login';
 import Perfil from '../pages/Perfil';
-import Layout from '../pages/LayoutDisciplinasProfessor';
+import Layout from '../pages/LayoutDisciplinas';
+import Disciplina from '../pages/DisciplinaSelecionada'
 import { createAppContainer } from 'react-navigation';
 
 const MainNavigator = createStackNavigator(
   {
     Login: { screen: Login },
     Perfil: { screen: Perfil },
-    Layout: { screen: Layout }
+    Layout: { screen: Layout },
+    Disciplina: { screen: Disciplina}
   },
   {
     headerMode: 'none'
