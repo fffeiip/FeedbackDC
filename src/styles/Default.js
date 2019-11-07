@@ -52,10 +52,9 @@ export default StyleSheet.create({
         color: '#f31f33'
     },
     item: {
-        alignItems: "center",
+        borderRadius: 20,
         backgroundColor: "#15fb",
-        flexGrow: 1,
         margin: 4,
-        padding: 20
+        padding: 20,
     }
 })
