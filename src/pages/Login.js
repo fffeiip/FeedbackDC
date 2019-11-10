@@ -30,20 +30,21 @@ class Login extends Component {
    * Caso consiga uma resposta positiva, retorna um token , caso contrário retorna uma mensagem de erro (Mesmo não sinalizando o erro http)
    */
 
-  limpaStates = () => {
+  limpaStates = (erro) => {
     this.setState({ senha: '' })
     this.setState({ usuario: '' })
-    this.setState({ error: '' })
+    //limpar state de token e userid também?
+    if(!erro)
+      this.setState({ error: '' })
 
   }
-  deuerro = erro => {
+  falhaLogin = erro => {
     this.setState({ error: erro })
-    this.setState({ senha: '' })
-    this.setState({ usuario: '' })
+    this.limpaStates(erro)
 
   }
 
-  logou = tokenAcesso => {
+  requestPerfil = tokenAcesso => {
     this.setState({ token: tokenAcesso })
     var data2 = new FormData()
     data2.append('wstoken', this.state.token)
@@ -77,7 +78,7 @@ class Login extends Component {
       .then((response) => response.json())
       .then((responseJSON) => {
 
-        responseJSON.token ? this.logou(responseJSON.token) : this.deuerro(responseJSON.error)
+        responseJSON.token ? this.requestPerfil(responseJSON.token) : this.falhaLogin(responseJSON.error)
       })
       .catch((error) => console.log(error)) //Nunca vai dar esse error. Quando da erro o ava retorna código de sucesso + mensagem de erro.
   }
