@@ -8,6 +8,13 @@ export default StyleSheet.create({
         fontWeight: "bold",
         alignSelf: "center"
     },
+    headerTitle: {
+        padding: 10,
+        fontSize: 20 ,
+        color: '#ffffff',
+        fontWeight: "bold",
+        alignItems: "center"
+    },
     button: {
         backgroundColor: '#306f',
         width: 100,
