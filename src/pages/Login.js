@@ -29,8 +29,18 @@ class Login extends Component {
    * A API do ava retorna sempre o código 200(sucesso) independende de ter tido sucesso ou não. 
    * Caso consiga uma resposta positiva, retorna um token , caso contrário retorna uma mensagem de erro (Mesmo não sinalizando o erro http)
    */
+
+  limpaStates = () => {
+    this.setState({ senha: '' })
+    this.setState({ usuario: '' })
+    this.setState({ error: '' })
+
+  }
   deuerro = erro => {
     this.setState({ error: erro })
+    this.setState({ senha: '' })
+    this.setState({ usuario: '' })
+
   }
 
   logou = tokenAcesso => {
@@ -45,6 +55,7 @@ class Login extends Component {
       .then((response) => response.json())
       .then(responseJSON => {
         const { navigate } = this.props.navigation
+        this.limpaStates()
         navigate('Perfil', {
           name: responseJSON.firstname,
           userid: responseJSON.userid,
@@ -65,7 +76,7 @@ class Login extends Component {
     })
       .then((response) => response.json())
       .then((responseJSON) => {
-        
+
         responseJSON.token ? this.logou(responseJSON.token) : this.deuerro(responseJSON.error)
       })
       .catch((error) => console.log(error)) //Nunca vai dar esse error. Quando da erro o ava retorna código de sucesso + mensagem de erro.
@@ -89,10 +100,20 @@ class Login extends Component {
               </View>
               <View style={styles.viewInput}>
                 <Text>LOGIN</Text>
-                <TextInput style={styles.textInput} onChangeText={usuario => this.setState({ usuario })} placeholder="Usuário">
+                <TextInput
+                  style={styles.textInput}
+                  onChangeText={usuario => this.setState({ usuario })}
+                  value={this.state.usuario}
+                  placeholder="Usuário">
                 </TextInput>
                 <Text>SENHA</Text>
-                <TextInput style={styles.textInput} onChangeText={senha => this.setState({ senha })} placeholder="Senha" secureTextEntry={true} textContentType="password">
+                <TextInput
+                  style={styles.textInput}
+                  onChangeText={senha => this.setState({ senha })}
+                  placeholder="Senha"
+                  value={this.state.senha}
+                  secureTextEntry={true}
+                  textContentType="password">
                 </TextInput>
               </View>
               <View style={styles.containerButton}>
