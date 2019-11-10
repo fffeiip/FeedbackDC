@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
 import com.facebook.react.ReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import com.facebook.react.ReactPackage;
