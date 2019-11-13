@@ -1,4 +1,4 @@
-import firebase from 'react-native -firebase';
+import firebase from 'react-native-firebase';
 
 var config = {
     databaseURL: "https://feedbackdc-d0bc7.firebaseio.com/",

@@ -38,9 +38,12 @@ class DisciplinaSelecionada extends Component {
     }
 
     post_firebase = (emoji) => {
-        disciplina_id = this.state.disciplina_id
-        usuario_id = this.state.userid
-        mensagem = this.state.mensagem_feedback
+        var disciplina_id = this.state.disciplina_id
+        var usuario_id = this.state.userid
+        var mensagem = this.state.mensagem_feedback
+        console.log(disciplina_id)
+        console.log(usuario_id)
+        console.log(mensagem)
         firebase.database().ref('feedbacks/').push({
             mensagem,
             disciplina_id,
@@ -63,7 +66,7 @@ class DisciplinaSelecionada extends Component {
                         style={styles.textInput}
                         multiline={true}
                         numberOfLines={6}
-                        onChangeText={(feedback) => this.setState({ feedback })}
+                        onChangeText={(mensagem_feedback) => this.setState({ mensagem_feedback })}
                         value={this.state.text}
                     />
                 </SafeAreaView>
@@ -78,18 +81,18 @@ class DisciplinaSelecionada extends Component {
                         <Text style={styles.textButton}><Emoji style={{fontSize: 25}} name={":confused:"} /></Text>
                     </TouchableOpacity>
                 </View>
-                <View
+                {/* <View
                     style={styles.containerList}>
                     <FlatList
                         data={this.state.data}
-                        keyExtractor={item => item.id}
+                        keyExtractor={item => item.mensagem} //mensagem? id? what?
                         renderItem={({ item }) => {
                             return (
                                 <Feedback emoji={item.emoji} mensagem={item.mensagem}/>
                             )
                         }}
                     />
-                </View>
+                </View> */}
             </View>
         )
     }
