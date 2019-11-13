@@ -54,6 +54,12 @@ export default StyleSheet.create({
         paddingVertical: 50,
         alignItems: 'center'
     },
+    containerButtonFeedback: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     warningText: {
         alignSelf: 'center',
         color: '#f31f33'
@@ -61,6 +67,13 @@ export default StyleSheet.create({
     item: {
         borderRadius: 20,
         backgroundColor: "#15fb",
+        margin: 4,
+        padding: 20,
+    },
+    itemFeedbak: {
+        borderRadius: 20,
+        backgroundColor: "#0f0555",
+        flex: 1,
         margin: 4,
         padding: 20,
     }

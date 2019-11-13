@@ -40,7 +40,7 @@ export default class Perfil extends Component {
                 this.setState({ userid: responseJSON[0].id })
                 this.setState({ department: responseJSON[0].department })
                 this.setState({ disciplinas: responseJSON[0].enrolledcourses.filter(item => item.fullname.includes(semestreAtual)) })
-                console.log(this.state)
+                // console.log(this.state)
             })
             .catch(error => console.log(error))
     }
@@ -48,7 +48,8 @@ export default class Perfil extends Component {
     gotoDisciplinas = () => {
         const { navigation } = this.props
         navigation.navigate('Layout', {
-            disciplinas: this.state.disciplinas
+            disciplinas: this.state.disciplinas,
+            userid : this.state.userid
         })
     }
 

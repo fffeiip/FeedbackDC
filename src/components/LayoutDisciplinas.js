@@ -11,6 +11,15 @@ import styles from '../styles/Default'
 
 
 class LayoutDisciplinas extends React.Component {
+
+  teste(item) {
+    console.log(item.id)
+    this.props.navigation.navigate('Disciplina', {
+      name: item.fullname,
+      disciplina_id: item.id,
+      userid: this.props.navigation.getParam('userid',[])
+    })
+  }
   render() {
     return (
       <FlatList
@@ -19,10 +28,7 @@ class LayoutDisciplinas extends React.Component {
         renderItem={({ item }) => {
           return (
             <View>
-              <TouchableOpacity style={styles.item} onPress={() => this.props.navigation.navigate('Disciplina', {
-                name: item.fullname,
-                disciplina_id: item.id
-              })}>
+              <TouchableOpacity style={styles.item} onPress={() => this.teste(item)}>
                 <Text style={styles.textButton}>{item.fullname}</Text>
               </TouchableOpacity>
             </View >
