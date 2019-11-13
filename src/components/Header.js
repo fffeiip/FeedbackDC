@@ -11,7 +11,7 @@ const Header = props => (
         <Text style={styles.headerTitle}>
             {props.titulo}
         </Text>
-        <Emoji name={"door"} style={styles.emoji}> </Emoji>
+        <Emoji name={"door"} style={{fontSize: 25}}> </Emoji>
     </View>
 );
 

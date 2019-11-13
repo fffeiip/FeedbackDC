@@ -35,6 +35,11 @@ export default StyleSheet.create({
         fontSize: 40
     },
     viewInput: {
+        paddingVertical: 30,
+        paddingHorizontal: 20
+    },
+    containerList:{
+        paddingVertical: 30,
         paddingHorizontal: 20
     },
     statusBar: {
@@ -56,9 +61,19 @@ export default StyleSheet.create({
     },
     containerButtonFeedback: {
         flex: 1,
+        paddingVertical: 30,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    itemListFeedback: {
+        paddingVertical: 15,
+        borderRadius: 20,
+        backgroundColor: "#15fb",
+        flexDirection: 'row',
+        alignItems: 'center',
+        margin: 4,
+        padding: 20,
     },
     warningText: {
         alignSelf: 'center',
@@ -69,10 +84,15 @@ export default StyleSheet.create({
         backgroundColor: "#15fb",
         margin: 4,
         padding: 20,
+        flex:1,
+    },
+    itemList: {
+        flex:1,
     },
     itemFeedbak: {
         borderRadius: 20,
         backgroundColor: "#0f0555",
+        // backgroundColor: "#54ff",
         flex: 1,
         margin: 4,
         padding: 20,
