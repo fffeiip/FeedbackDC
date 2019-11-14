@@ -64,9 +64,12 @@ export default class Perfil extends Component {
         return (
             <View>
                 <Header titulo={this.formatString(this.state.department)}></Header>
-                <Text>
-                    {"Olá" + this.formatString(navigation.getParam('name', ''))}
+                <View style={styles.headerTitle}>
+
+                <Text style={{fontSize: 30}}>
+                    {"Olá " + this.formatString(navigation.getParam('name', ''))}
                 </Text>
+                </View>
                 <SafeAreaView>
                     <ListDisciplinas navigation={navigation} disciplinas={this.state.disciplinas}/>
                 </SafeAreaView>

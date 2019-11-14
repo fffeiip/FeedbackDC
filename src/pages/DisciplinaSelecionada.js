@@ -8,7 +8,7 @@ import {
     FlatList,
     TouchableOpacity,
 } from 'react-native'
-import firebase from 'react-native-firebase'
+import firebase from '../api/Firebase'
 import styles from '../styles/Default'
 import Header from '../components/Header'
 import Feedback from '../components/Feedback'
@@ -39,24 +39,31 @@ class DisciplinaSelecionada extends Component {
     }
 
     post_firebase = (emoji) => {
-        var disciplina_id = this.state.disciplina_id
-        var usuario_id = this.state.userid
-        var mensagem = this.state.mensagem_feedback
-        console.log(disciplina_id)
-        console.log(usuario_id)
-        console.log(mensagem)
-        firebase.database().ref('feedbacks/').push({
-            mensagem,
-            disciplina_id,
-            emoji,
-            usuario_id
-        }).then((data) => {
-            //success callback
-            console.log('data ', data)
-        }).catch((error) => {
-            //error callback
-            console.log('error ', error)
-        })
+        // var disciplina_id = this.state.disciplina_id
+        // var usuario_id = this.state.userid
+        // var mensagem = this.state.mensagem_feedback
+        // console.log(disciplina_id)
+        // console.log(usuario_id)
+        // console.log(mensagem)
+        let post = {
+            mensagem : this.state.mensagem_feedback,
+            emoji : emoji,
+            usuario_id: this.state.userid,
+            disciplina_id: this.state.disciplina_id
+        }
+        console.log(firebase.database())
+        // let dbRef = firebase.database().ref();
+        // console.log(dbRef)
+        // console.log(firebase)
+        // dbRef.push({
+        //    post
+        // }).then((data) => {
+        //     //success callback
+        //     console.log('data ', data)
+        // }).catch((error) => {
+        //     //error callback
+        //     console.log('error ', error)
+        // })
     }
     render() {
         return (
@@ -72,17 +79,17 @@ class DisciplinaSelecionada extends Component {
                     />
                 </SafeAreaView>
                 <View style={styles.containerButtonFeedback}>
-                    <TouchableOpacity style={styles.itemFeedbak} onPress={() => console.log(this.state)}>
+                    <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.post_firebase(":blush:")}>
                         <Text style={styles.textButton}><Emoji style={{fontSize: 25}} name={":blush:"} /></Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.post_firebase()}>
+                    <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.post_firebase(":neutral_face:")}>
                         <Text style={styles.textButton}><Emoji style={{fontSize: 25}} name={":neutral_face:"} /></Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.post_firebase()}>
+                    <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.post_firebase(":confused:")}>
                         <Text style={styles.textButton}><Emoji style={{fontSize: 25}} name={":confused:"} /></Text>
                     </TouchableOpacity>
                 </View>
-                {/* <View
+                <View
                     style={styles.containerList}>
                     <FlatList
                         data={this.state.data}
@@ -93,7 +100,7 @@ class DisciplinaSelecionada extends Component {
                             )
                         }}
                     />
-                </View> */}
+                </View>
             </View>
         )
     }
