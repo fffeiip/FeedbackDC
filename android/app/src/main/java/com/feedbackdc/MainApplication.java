@@ -2,6 +2,8 @@ package com.feedbackdc;
 
 import android.app.Application;
 import android.content.Context;
+import io.invertase.firebase.database.ReactNativeFirebaseDatabasePackage;
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
