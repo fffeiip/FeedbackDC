@@ -24,16 +24,17 @@ class DisciplinaSelecionada extends Component {
             titulo: this.props.navigation.getParam('name', []),
             disciplina_id: this.props.navigation.getParam('disciplina_id', []),
             userid: this.props.navigation.getParam('userid', []),
-            data: [
-                //TESTES - puxar do firebase e setar no componentdidmount
-                { id: "00", mensagem: "Achei massa!", emoji: "+1" },
-                { id: "01", mensagem: "Topster", emoji: "+1" },
-                { id: "02", mensagem: "Fala muito alto!", emoji: "confused" },
-                { id: "03", mensagem: "Escreve muito!", emoji: "confused" },
-                { id: "04", mensagem: "Só lê slide", emoji: "confused" },
-                { id: "05", mensagem: "Amei a aula!", emoji: "+1" },
-                { id: "06", mensagem: "Amei a aufaofasofaofaofaoafoioijdfaoijdfaojidfajdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfaojidffdjala!", emoji: "+1" },
-            ]
+            data: ""
+            // [
+            //     //TESTES - puxar do firebase e setar no componentdidmount
+            //     { id: "00", mensagem: "Achei massa!", emoji: "+1" },
+            //     { id: "01", mensagem: "Topster", emoji: "+1" },
+            //     { id: "02", mensagem: "Fala muito alto!", emoji: "confused" },
+            //     { id: "03", mensagem: "Escreve muito!", emoji: "confused" },
+            //     { id: "04", mensagem: "Só lê slide", emoji: "confused" },
+            //     { id: "05", mensagem: "Amei a aula!", emoji: "+1" },
+            //     { id: "06", mensagem: "Amei a aufaofasofaofaofaoafoioijdfaoijdfaojidfajdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfifdaojidfaoijdfaoijdfaojidfaojidfaojidffdjala!", emoji: "+1" },
+            // ]
         }
     }
 
