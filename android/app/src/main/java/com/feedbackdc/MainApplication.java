@@ -4,10 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import io.invertase.firebase.database.ReactNativeFirebaseDatabasePackage;
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+import io.invertase.firebase.RNFirebasePackage;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
-import io.invertase.firebase.RNFirebasePackage;
 import com.facebook.react.ReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import com.facebook.react.ReactPackage;

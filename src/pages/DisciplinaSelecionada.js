@@ -51,7 +51,7 @@ class DisciplinaSelecionada extends Component {
             usuario_id: this.state.userid,
             disciplina_id: this.state.disciplina_id
         }
-        console.log(firebase.database())
+        console.log(firebase.database)
         // let dbRef = firebase.database().ref();
         // console.log(dbRef)
         // console.log(firebase)
