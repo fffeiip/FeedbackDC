@@ -179,15 +179,14 @@ android {
 }
 
 dependencies {
-    // implementation "com.google.firebase:firebase-database:19.2.0"
-    // implementation project(':react-native-firebase')
-    implementation project(path: ":@react-native-firebase_app")
-    implementation project(path: ":@react-native-firebase_database")
+    implementation "com.google.firebase:firebase-database:18.0.0"
+    implementation "com.google.firebase:firebase-analytics:17.2.0"
+    implementation project(':react-native-firebase')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "com.google.android.gms:play-services-base:16.1.0"
-    implementation "com.google.firebase:firebase-core:17.0.0"
+    // implementation "com.google.firebase:firebase-core:17.0.0"
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

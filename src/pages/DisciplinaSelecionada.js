@@ -51,7 +51,13 @@ class DisciplinaSelecionada extends Component {
             usuario_id: this.state.userid,
             disciplina_id: this.state.disciplina_id
         }
-        console.log(firebase.database)
+        console.log("firebase")
+        console.log(firebase)
+        console.log("firebase.database")
+        console.log(firebase.database())
+
+        this.setState({data: [...this.state.data,post]})
+        this.setState({mensagem_feedback: ""})
         // let dbRef = firebase.database().ref();
         // console.log(dbRef)
         // console.log(firebase)

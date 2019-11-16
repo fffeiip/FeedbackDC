@@ -1,6 +1,5 @@
 import React, { Fragment, Component } from 'react';
 import styles from '../styles/Default'
-
 import {
   View,
   Text,
