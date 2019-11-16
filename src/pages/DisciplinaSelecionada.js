@@ -8,7 +8,8 @@ import {
     FlatList,
     TouchableOpacity,
 } from 'react-native'
-import firebase from '../api/Firebase'
+// import firebase from '../api/Firebase'
+import database from '@react-native-firebase/database'
 import styles from '../styles/Default'
 import Header from '../components/Header'
 import Feedback from '../components/Feedback'
@@ -45,31 +46,30 @@ class DisciplinaSelecionada extends Component {
         // console.log(disciplina_id)
         // console.log(usuario_id)
         // console.log(mensagem)
-        let post = {
+        let feedback = {
             mensagem : this.state.mensagem_feedback,
             emoji : emoji,
             usuario_id: this.state.userid,
             disciplina_id: this.state.disciplina_id
         }
-        console.log("firebase")
-        console.log(firebase)
-        console.log("firebase.database")
-        console.log(firebase.database)
-
-        this.setState({data: [...this.state.data,post]})
-        this.setState({mensagem_feedback: ""})
-        // let dbRef = firebase.database().ref();
+        // console.log("firebase.database")
+        let dbRef = database().ref('feedbacks');
         // console.log(dbRef)
+        // console.log(database)
+        // console.log(database().ref())
+
+        this.setState({data: [...this.state.data,feedback]})
+        this.setState({mensagem_feedback: ""})
         // console.log(firebase)
-        // dbRef.push({
-        //    post
-        // }).then((data) => {
-        //     //success callback
-        //     console.log('data ', data)
-        // }).catch((error) => {
-        //     //error callback
-        //     console.log('error ', error)
-        // })
+        dbRef.push({
+           ...feedback
+        }).then((data) => {
+            //success callback
+            console.log('data ', data)
+        }).catch((error) => {
+            //error callback
+            console.log('error ', error)
+        })
     }
     render() {
         return (
