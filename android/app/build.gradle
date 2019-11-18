@@ -179,7 +179,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ":@react-native-firebase_database")
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
