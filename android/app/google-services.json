@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "554790775053",
+    "firebase_url": "https://feedbackdc-d0bc7.firebaseio.com",
+    "project_id": "feedbackdc-d0bc7",
+    "storage_bucket": "feedbackdc-d0bc7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:554790775053:android:ba705c7a74ec869dbae844",
+        "android_client_info": {
+          "package_name": "com.feedbackdc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "554790775053-sicdhlu1i8i7g44q0qp4s7pvp4kknh3n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.feedbackdc",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "554790775053-3gjmp8tu7vlu5v27rtsvffe0chevfqv5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnCwtNDgIDU7hgc6nDrqKcoQcJ8tQsAuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "554790775053-3gjmp8tu7vlu5v27rtsvffe0chevfqv5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
