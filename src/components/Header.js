@@ -9,13 +9,17 @@ import {
 
 const Header = props => (
     <View style={styles.header}>
-        <Text style={styles.headerTitle}>
-            {props.titulo}
-        </Text>
-        <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
+        <View style={{width: '90%'}}>
+            <Text style={styles.headerTitle}>
+                {props.titulo}
+            </Text>
+        </View>
+        <View style={{width: '10%'}}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
 
-            <Emoji name={"door"} style={{ fontSize: 25 }}> </Emoji>
-        </TouchableOpacity>
+                <Emoji name={"door"} style={{ fontSize: 30 }}> </Emoji>
+            </TouchableOpacity>
+        </View>
     </View>
 );
 

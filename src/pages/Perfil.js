@@ -60,18 +60,18 @@ export default class Perfil extends Component {
     render() {
         const { navigation } = this.props
         return (
-            <View>
+            <View style={styles.container}>
                 <Header navigation ={this.props.navigation } titulo={this.formatString(this.state.department)}></Header>
                 <View 
-                style={styles.headerTitle}
+                style={{height: '5%'}}
                 >
 
-                <Text style={{fontSize: 20}}>
+                <Text style={{fontSize: 20, alignSelf: 'center'}}>
                     {"Olá " + this.formatString(navigation.getParam('name', ''))}
                     {". Selecionar disciplina:"}
                 </Text>
                 </View>
-                <SafeAreaView>
+                <SafeAreaView style={{flex: 1, borderWidth: 5, borderRadius: 30, margin: '1%'}}>
                     <ListDisciplinas navigation={navigation} disciplinas={this.state.disciplinas}/>
                 </SafeAreaView>
             </View>

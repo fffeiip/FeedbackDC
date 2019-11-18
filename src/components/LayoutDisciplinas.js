@@ -26,7 +26,7 @@ class LayoutDisciplinas extends React.Component {
         keyExtractor={item => item.id}
         renderItem={({ item }) => {
           return (
-            <View>
+            <View style={{flex: 1}}>
               <TouchableOpacity style={styles.item} onPress={() => this.exibe(item)}>
                 <Text style={styles.textButton}>{item.fullname}</Text>
               </TouchableOpacity>

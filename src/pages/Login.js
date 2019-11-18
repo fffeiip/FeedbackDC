@@ -23,6 +23,7 @@ class Login extends Component {
       error: '',
       token: '',
       userid: '',
+      professor: false,
     }
   }
   /**

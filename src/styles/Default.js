@@ -13,7 +13,7 @@ export default StyleSheet.create({
         fontSize: 20 ,
         color: '#ffffff',
         fontWeight: "bold",
-        alignItems: "center"
+        alignItems: 'flex-end'
     },
     button: {
         backgroundColor: '#0f0550',
@@ -52,8 +52,10 @@ export default StyleSheet.create({
         color: '#ffffff'
     },
     header: {
+        flexDirection: 'row',
         backgroundColor: '#0f0550',
-        alignItems: "flex-end"
+        alignItems: 'center',
+        height: '15%'
     },
     containerButton: {
         paddingVertical: 50,
@@ -80,11 +82,12 @@ export default StyleSheet.create({
         color: '#f31f33'
     },
     item: {
+        flex:1,
         borderRadius: 20,
         backgroundColor: "#15fb",
-        margin: 4,
-        padding: 20,
-        flex:1,
+        margin: '2%',
+        padding: 20
+        
     },
     itemList: {
         flex:1,
@@ -95,5 +98,10 @@ export default StyleSheet.create({
         flex: 1,
         margin: 4,
         padding: 20,
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center'
     }
 })
