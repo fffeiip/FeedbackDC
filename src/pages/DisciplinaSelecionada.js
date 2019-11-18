@@ -74,7 +74,7 @@ class DisciplinaSelecionada extends Component {
     render() {
         return (
             <View>
-                <Header titulo={this.state.titulo} />
+                <Header navigation ={this.props.navigation } titulo={this.state.titulo} />
                 <SafeAreaView style={styles.viewInput}>
                     <TextInput
                         style={styles.textInput}

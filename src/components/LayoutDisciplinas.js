@@ -12,8 +12,7 @@ import styles from '../styles/Default'
 
 class LayoutDisciplinas extends React.Component {
 
-  teste(item) {
-    console.log(item.id)
+  exibe(item) {
     this.props.navigation.navigate('Disciplina', {
       name: item.fullname,
       disciplina_id: item.id,
@@ -28,7 +27,7 @@ class LayoutDisciplinas extends React.Component {
         renderItem={({ item }) => {
           return (
             <View>
-              <TouchableOpacity style={styles.item} onPress={() => this.teste(item)}>
+              <TouchableOpacity style={styles.item} onPress={() => this.exibe(item)}>
                 <Text style={styles.textButton}>{item.fullname}</Text>
               </TouchableOpacity>
             </View >

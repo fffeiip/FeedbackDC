@@ -3,7 +3,6 @@ import styles from '../styles/Default'
 import {
     View,
     Text,
-    TouchableOpacity,
     SafeAreaView
 } from 'react-native';
 import Header from '../components/Header';
@@ -40,7 +39,6 @@ export default class Perfil extends Component {
                 this.setState({ userid: responseJSON[0].id })
                 this.setState({ department: responseJSON[0].department })
                 this.setState({ disciplinas: responseJSON[0].enrolledcourses.filter(item => item.fullname.includes(semestreAtual)) })
-                // console.log(this.state)
             })
             .catch(error => console.log(error))
     }
@@ -63,11 +61,14 @@ export default class Perfil extends Component {
         const { navigation } = this.props
         return (
             <View>
-                <Header titulo={this.formatString(this.state.department)}></Header>
-                <View style={styles.headerTitle}>
+                <Header navigation ={this.props.navigation } titulo={this.formatString(this.state.department)}></Header>
+                <View 
+                style={styles.headerTitle}
+                >
 
-                <Text style={{fontSize: 30}}>
+                <Text style={{fontSize: 20}}>
                     {"Olá " + this.formatString(navigation.getParam('name', ''))}
+                    {". Selecionar disciplina:"}
                 </Text>
                 </View>
                 <SafeAreaView>
