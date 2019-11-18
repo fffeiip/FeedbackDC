@@ -9,8 +9,8 @@ import {
 
 const Feedback = props => (
     <View style={styles.itemListFeedback}>
+        <Emoji style={{ fontSize: 25, paddingHorizontal: 8 }} name={props.emoji} />
         <Text style={styles.textButton}>
-            <Emoji style={{ fontSize: 25 }} name={props.emoji} />
             {props.mensagem}
         </Text>
     </View>

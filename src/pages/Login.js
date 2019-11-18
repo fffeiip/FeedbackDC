@@ -75,7 +75,7 @@ class Login extends Component {
 
     return (
       <Fragment>
-        <StatusBar backgroundColor='#306f' />
+        <StatusBar backgroundColor='#0f0550' />
         <SafeAreaView>
           <ScrollView>
             <KeyboardAvoidingView

@@ -16,7 +16,7 @@ export default StyleSheet.create({
         alignItems: "center"
     },
     button: {
-        backgroundColor: '#306f',
+        backgroundColor: '#0f0550',
         width: 100,
         height: 40,
         justifyContent: 'center',
@@ -28,7 +28,7 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         fontSize: 16,
-        color: '#306f',
+        color: '#0f0550',
         padding: 10,
     },
     textArea: {
@@ -43,7 +43,7 @@ export default StyleSheet.create({
         paddingHorizontal: 20
     },
     statusBar: {
-        backgroundColor: '#306f',
+        backgroundColor: '#0f0550',
     },
     textButton: {
         textAlign: 'center',
@@ -52,7 +52,7 @@ export default StyleSheet.create({
         color: '#ffffff'
     },
     header: {
-        backgroundColor: '#306f',
+        backgroundColor: '#0f0550',
         alignItems: "flex-end"
     },
     containerButton: {
@@ -73,7 +73,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         margin: 4,
-        padding: 20,
+        padding: 15,
     },
     warningText: {
         alignSelf: 'center',
@@ -92,7 +92,6 @@ export default StyleSheet.create({
     itemFeedbak: {
         borderRadius: 20,
         backgroundColor: "#0f0555",
-        // backgroundColor: "#54ff",
         flex: 1,
         margin: 4,
         padding: 20,
