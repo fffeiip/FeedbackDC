@@ -46,17 +46,18 @@ class DisciplinaSelecionada extends Component {
                     key: child.key
                 });
             });
-
             this.setState({
-                data: feedbacks
+                data: feedbacks.reverse()
             });
         });
     }
 
     post_firebase = (emoji) => {
+        var hoje = new Date()
         let feedback = {
             mensagem: this.state.mensagem_feedback,
             emoji: emoji,
+            dataFeedback: hoje.getDate() +'-'+hoje.getMonth()+'-'+hoje.getFullYear()
         }
         let dbRef = database().ref(`disciplina_id/${this.state.disciplina_id}/usuario_id/${this.state.userid}`)
 
@@ -65,6 +66,8 @@ class DisciplinaSelecionada extends Component {
         }).then((data) => {
             this.setState({ mensagem_feedback: "" })
             //success callback
+
+            console.log('feedback ', feedback)
             console.log('data ', data)
         }).catch((error) => {
             //error callback

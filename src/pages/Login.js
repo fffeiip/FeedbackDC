@@ -1,9 +1,11 @@
 import React, { Fragment, Component } from 'react';
 import styles from '../styles/Default'
+import database from '@react-native-firebase/database'
 
 import {
   View,
   Text,
+  Image,
   TextInput,
   SafeAreaView,
   ScrollView,
@@ -22,6 +24,7 @@ class Login extends Component {
       senha: '',
       error: '',
       token: '',
+      isprofessor: '',
       userid: '',
     }
   }
@@ -34,7 +37,7 @@ class Login extends Component {
     this.setState({ senha: '' })
     this.setState({ usuario: '' })
     //limpar state de token e userid também?
-    if(!erro)
+    if (!erro)
       this.setState({ error: '' })
 
   }
@@ -44,7 +47,21 @@ class Login extends Component {
 
   }
 
+  verificaDocencia = userid => {
+    let dbRef = database().ref('professores/')
+
+    dataSnapshot.forEach(child => {
+      feedbacks.push({
+        emoji: child.val().feedback.emoji,
+        mensagem: child.val().feedback.mensagem,
+        key: child.key
+      });
+    });
+  }
+
   requestPerfil = tokenAcesso => {
+
+
     this.setState({ token: tokenAcesso })
     var data2 = new FormData()
     data2.append('wstoken', this.state.token)
@@ -55,12 +72,24 @@ class Login extends Component {
     })
       .then((response) => response.json())
       .then(responseJSON => {
+
+        // dbRef.push({
+        //   responseJSON
+        // }).then((data) => {
+        //   //success callback
+        //   console.log('data ', data)
+        // }).catch((error) => {
+        //   //error callback
+        //   console.log('error ', error)
+        // })
         const { navigate } = this.props.navigation
+
         this.limpaStates()
         navigate('Perfil', {
           name: responseJSON.firstname,
           userid: responseJSON.userid,
-          token: this.state.token
+          token: this.state.token,
+          professor: this.state.isprofessor
         })
       })
   }
@@ -84,7 +113,7 @@ class Login extends Component {
   }
 
   render() {
-
+    const image = require('../images/logo-ufrpe.png')
     return (
       <Fragment>
         <StatusBar backgroundColor='#0f0550' />
@@ -96,10 +125,11 @@ class Login extends Component {
               enabled>
               <View style={styles.header}>
                 <Text style={styles.title}>
-                  Feedback UFRPE
+                  FeedbackDC
                 </Text>
               </View>
               <View style={styles.viewInput}>
+                <Image source={image}/>
                 <Text>LOGIN</Text>
                 <TextInput
                   style={styles.textInput}
