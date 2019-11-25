@@ -9,10 +9,16 @@ import {
 
 const Feedback = props => (
     <View style={styles.itemListFeedback}>
-        <Emoji style={{ fontSize: 25, paddingHorizontal: 8 }} name={props.emoji} />
-        <Text style={styles.textButton}>
-            {props.mensagem}
-        </Text>
+        <View style={{width: '20%'}} >
+            <Emoji style={{ fontSize: 25, paddingHorizontal: 8 }} name={props.emoji} />
+        </View>
+
+        <View style={{width: '80%'}}>
+            <Text
+                style={styles.textFeedback}>
+                {props.mensagem}
+            </Text>
+        </View>
     </View>
 )
 
