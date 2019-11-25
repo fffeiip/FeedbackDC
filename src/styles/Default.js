@@ -51,6 +51,12 @@ export default StyleSheet.create({
         alignSelf: "center",
         color: '#ffffff'
     },
+    textItem: {
+        textAlign: 'center',
+        fontSize: 16,
+        alignSelf: "center",
+        color: 'black'
+    },
     header: {
         backgroundColor: '#0f0550',
         alignItems: "flex-end"

@@ -69,10 +69,13 @@ export default class Perfil extends Component {
                 <Text style={{fontSize: 30}}>
                     {"Olá " + this.formatString(navigation.getParam('name', ''))}
                 </Text>
+                {/* <Text style={{fontSize: 20, alignSelf: 'center'}}>
+                    {" Selecionar disciplina:"}
+                </Text> */}
                 </View>
                 <SafeAreaView>
                     <ListDisciplinas navigation={navigation} disciplinas={this.state.disciplinas}/>
-                </SafeAreaView>
+                </View>
             </View>
         )
     }
