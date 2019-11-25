@@ -97,7 +97,7 @@ class Login extends Component {
               enabled>
               <View style={styles.header}>
                 <Text style={styles.title}>
-                  Feedback UFRPE
+                  FeedbackDC
                 </Text>
               </View>
               <View style={styles.viewInput}>

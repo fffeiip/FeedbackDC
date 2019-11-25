@@ -13,7 +13,7 @@ export default StyleSheet.create({
         fontSize: 20,
         color: '#ffffff',
         fontWeight: "bold",
-        alignItems: 'flex-end'
+        alignItems: 'center'
     },
     button: {
         backgroundColor: '#0f0550',
@@ -61,10 +61,10 @@ export default StyleSheet.create({
         color: '#ffffff'
     },
     header: {
-        flexDirection: 'row',
+        // flexDirection: 'row',
         backgroundColor: '#0f0550',
-        alignItems: 'center',
-        padding: '1%'
+        alignItems: 'flex-end',
+        // padding: '1%'
     },
     containerButton: {
         paddingVertical: '20%',

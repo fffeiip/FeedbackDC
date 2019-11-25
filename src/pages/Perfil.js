@@ -47,7 +47,7 @@ export default class Perfil extends Component {
         const { navigation } = this.props
         navigation.navigate('Layout', {
             disciplinas: this.state.disciplinas,
-            userid : this.state.userid
+            userid: this.state.userid
         })
     }
 
@@ -61,18 +61,18 @@ export default class Perfil extends Component {
         const { navigation } = this.props
         return (
             <View style={styles.container}>
-                <Header navigation ={this.props.navigation } titulo={this.formatString(this.state.department)}></Header>
-                <View 
-                style={{height: '5%'}}
+                <Header navigation={this.props.navigation} titulo={this.formatString(this.state.department)}></Header>
+                <View
+                    style={styles.headerTitle}
                 >
 
-                <Text style={{fontSize: 20, alignSelf: 'center'}}>
-                    {"Olá " + this.formatString(navigation.getParam('name', ''))}
-                    {". Selecionar disciplina:"}
-                </Text>
+                    <Text style={{ fontSize: 20, alignSelf: 'center' }}>
+                        {"Olá " + this.formatString(navigation.getParam('name', ''))+ ". Selecionar dentre as disciplinas do semestre:"}
+                        
+                    </Text>
                 </View>
-                <SafeAreaView style={{flex: 1, borderWidth: 5, borderRadius: 30, margin: '1%'}}>
-                    <ListDisciplinas navigation={navigation} disciplinas={this.state.disciplinas}/>
+                <SafeAreaView style={{ flex: 1 }}>
+                    <ListDisciplinas navigation={navigation} disciplinas={this.state.disciplinas} />
                 </SafeAreaView>
             </View>
         )
