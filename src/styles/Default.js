@@ -10,7 +10,7 @@ export default StyleSheet.create({
     },
     headerTitle: {
         padding: 10,
-        fontSize: 20 ,
+        fontSize: 20,
         color: '#ffffff',
         fontWeight: "bold",
         alignItems: 'flex-end'
@@ -29,18 +29,21 @@ export default StyleSheet.create({
         borderRadius: 8,
         fontSize: 16,
         color: '#0f0550',
-        padding: 10,
+        // padding: 10,
     },
     textArea: {
         fontSize: 40
     },
     viewInput: {
-        paddingVertical: 30,
-        paddingHorizontal: 20
+        paddingTop: '5%',
+        paddingHorizontal: '5%',
+        height: '30%'
     },
-    containerList:{
-        paddingVertical: 30,
-        paddingHorizontal: 20
+    containerList: {
+        // paddingVertical: 30,
+        // paddingHorizontal: 20
+        flex: 1,
+
     },
     statusBar: {
         backgroundColor: '#0f0550',
@@ -51,19 +54,25 @@ export default StyleSheet.create({
         alignSelf: "center",
         color: '#ffffff'
     },
+    textFeedback: {
+        textAlign: 'left',
+        fontSize: 16,
+        // alignSelf: "center",
+        color: '#ffffff'
+    },
     header: {
         flexDirection: 'row',
         backgroundColor: '#0f0550',
         alignItems: 'center',
-        height: '15%'
+        padding: '1%'
     },
     containerButton: {
-        paddingVertical: 50,
+        paddingVertical: '20%',
         alignItems: 'center'
     },
     containerButtonFeedback: {
-        flex: 1,
-        paddingVertical: 30,
+
+        // paddingVertical: 30,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -82,15 +91,15 @@ export default StyleSheet.create({
         color: '#f31f33'
     },
     item: {
-        flex:1,
+        flex: 1,
         borderRadius: 20,
         backgroundColor: "#15fb",
         margin: '2%',
         padding: 20
-        
+
     },
     itemList: {
-        flex:1,
+        flex: 1,
     },
     itemFeedbak: {
         borderRadius: 20,
