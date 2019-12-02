@@ -1,7 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import styles from '../styles/Default'
 import database from '@react-native-firebase/database'
-
 import {
   View,
   Text,
@@ -11,7 +10,8 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  Alert
 } from 'react-native';
 
 
@@ -24,8 +24,9 @@ class Login extends Component {
       senha: '',
       error: '',
       token: '',
-      isprofessor: '',
+      responseJSON: '',
       userid: '',
+      professor: false,
     }
   }
   /**
@@ -46,19 +47,16 @@ class Login extends Component {
     this.limpaStates(erro)
 
   }
+  navega = responseJSON => {
+    const { navigate } = this.props.navigation
+    navigate('Perfil', {
+      name: responseJSON.firstname,
+      userid: responseJSON.userid,
+      token: this.state.token,
+      professor: this.state.professor
+    })
 
-  verificaDocencia = userid => {
-    let dbRef = database().ref('professores/')
-
-    dataSnapshot.forEach(child => {
-      feedbacks.push({
-        emoji: child.val().feedback.emoji,
-        mensagem: child.val().feedback.mensagem,
-        key: child.key
-      });
-    });
   }
-
   requestPerfil = tokenAcesso => {
 
 
@@ -71,27 +69,18 @@ class Login extends Component {
       body: data2
     })
       .then((response) => response.json())
-      .then(responseJSON => {
-
-        // dbRef.push({
-        //   responseJSON
-        // }).then((data) => {
-        //   //success callback
-        //   console.log('data ', data)
-        // }).catch((error) => {
-        //   //error callback
-        //   console.log('error ', error)
-        // })
-        const { navigate } = this.props.navigation
-
+      .then(async responseJSON => {
+        this.setState({ responseJSON })
         this.limpaStates()
-        navigate('Perfil', {
-          name: responseJSON.firstname,
-          userid: responseJSON.userid,
-          token: this.state.token,
-          professor: this.state.isprofessor
+        let dbRef = database().ref('professores/')
+        await dbRef.once('value', dataSnapshot => {
+          dataSnapshot.forEach(child => {
+            if (child.val().usuario == responseJSON.username) {
+              this.setState({ professor: true })
+            }
+          })
         })
-      })
+      }).then(() => this.navega(this.state.responseJSON))
   }
 
   loginAva = () => {

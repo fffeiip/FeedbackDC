@@ -43,14 +43,6 @@ export default class Perfil extends Component {
             .catch(error => console.log(error))
     }
 
-    gotoDisciplinas = () => {
-        const { navigation } = this.props
-        navigation.navigate('Layout', {
-            disciplinas: this.state.disciplinas,
-            userid : this.state.userid
-        })
-    }
-
     formatString = str => {
         return str
             .replace(/(\B)[^ ]*/g, match => (match.toLowerCase()))
@@ -60,19 +52,19 @@ export default class Perfil extends Component {
     render() {
         const { navigation } = this.props
         return (
-            <View>
-                <Header navigation ={this.props.navigation } titulo={this.formatString(this.state.department)}></Header>
-                <View 
-                style={styles.headerTitle}
+            <View style={styles.container}>
+                <Header navigation={this.props.navigation} titulo={this.formatString(this.state.department)}></Header>
+                <View
+                    style={styles.headerTitle}
                 >
 
-                <Text style={{fontSize: 20}}>
-                    {"Olá " + this.formatString(navigation.getParam('name', ''))}
-                    {". Selecionar disciplina:"}
-                </Text>
+                    <Text style={{ fontSize: 20, alignSelf: 'center' }}>
+                        {"Olá " + this.formatString(navigation.getParam('name', ''))+ ". Selecionar dentre as disciplinas do semestre:"}
+                        
+                    </Text>
                 </View>
-                <SafeAreaView>
-                    <ListDisciplinas navigation={navigation} disciplinas={this.state.disciplinas}/>
+                <SafeAreaView style={{ flex: 1 }}>
+                    <ListDisciplinas navigation={navigation} disciplinas={this.state.disciplinas} />
                 </SafeAreaView>
             </View>
         )

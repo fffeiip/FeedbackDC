@@ -14,7 +14,7 @@ const Header = props => (
         </Text>
         <TouchableOpacity onPress={() => props.navigation.navigate('Login')}>
 
-            <Emoji name={"door"} style={{ fontSize: 25 }}> </Emoji>
+            <Emoji name={"door"} style={{ fontSize: 30 }}> </Emoji>
         </TouchableOpacity>
     </View>
 );

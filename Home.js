@@ -10,7 +10,8 @@ export default class App extends React.Component {
       disciplinas : '',
       token: '',
       userid: '',
-      title: ''
+      title: '',
+      professor: false
     }
   }
 
@@ -22,7 +23,8 @@ export default class App extends React.Component {
           token: this.state.token,
           disciplinas: this.state.disciplinas,
           userid: this.state.userid,
-          title: this.state.title
+          title: this.state.title,
+          professor: this.state.professor,
         }}
       />
     );
