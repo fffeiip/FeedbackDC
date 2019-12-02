@@ -45,7 +45,7 @@ class DisciplinaSelecionada extends Component {
             var feedbacks = []
             if (this.state.professor) {
                 dataSnapshot.forEach(child => {
-                    
+
                     child.forEach(neto => {
                         neto.forEach(bisneto => {
                             feedbacks.push({
@@ -93,49 +93,76 @@ class DisciplinaSelecionada extends Component {
         })
     }
     render() {
-        return (
-            <View style={styles.container}>
-                <Header navigation={this.props.navigation} titulo={this.state.titulo} />
-                <SafeAreaView style={styles.viewInput}>
-                    <TextInput
-                        style={styles.textInput}
-                        multiline={true}
-                        numberOfLines={6}
-                        placeholder="Escrever Feedback..."
-                        onChangeText={(mensagem_feedback) => this.setState({ mensagem_feedback })}
-                        value={this.state.mensagem_feedback}
-                    />
-                </SafeAreaView>
-                <View style={styles.containerButtonFeedback}>
-                    <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.state.mensagem_feedback ? this.post_firebase(":blush:") : ""}>
-                        <Text style={styles.textButton}><Emoji style={{ fontSize: 25 }} name={":blush:"} /></Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.state.mensagem_feedback ? this.post_firebase(":neutral_face:") : ""}>
-                        <Text style={styles.textButton}><Emoji style={{ fontSize: 25 }} name={":neutral_face:"} /></Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.state.mensagem_feedback ? this.post_firebase(":confused:") : ""}>
-                        <Text style={styles.textButton}><Emoji style={{ fontSize: 25 }} name={":confused:"} /></Text>
-                    </TouchableOpacity>
+        if (this.state.professor) {
+            return (
+                <View style={styles.container}>
+                    <Header navigation={this.props.navigation} titulo={this.state.titulo} />
+                    <View
+                        style={styles.containerList}>
+                        <Text style={{ fontSize: 20, alignSelf: 'center' }}>
+                            {"Ultimos Feedbacks Realizados: "}
+                        </Text>
+                        <FlatList
+                            data={this.state.data}
+                            keyExtractor={item => item.key}
+                            renderItem={({ item }) => {
+                                return (
+                                    <TouchableWithoutFeedback onPress={() => { }}>
+                                        <Feedback emoji={item.emoji} mensagem={item.mensagem} />
+                                    </TouchableWithoutFeedback>
+                                )
+                            }}
+                        />
+                    </View>
                 </View>
-                <View
-                    style={styles.containerList}>
-                    <Text style={{ fontSize: 20, alignSelf: 'center' }}>
-                        {"Ultimos Feedbacks Realizados: "}
-                    </Text>
-                    <FlatList
-                        data={this.state.data}
-                        keyExtractor={item => item.key}
-                        renderItem={({ item }) => {
-                            return (
-                                <TouchableWithoutFeedback onPress={() => { }}>
-                                    <Feedback emoji={item.emoji} mensagem={item.mensagem} />
-                                </TouchableWithoutFeedback>
-                            )
-                        }}
-                    />
+            )
+        } else {
+            return (
+                <View style={styles.container}>
+                    <Header navigation={this.props.navigation} titulo={this.state.titulo} />
+
+                    <SafeAreaView style={styles.viewInput}>
+                        <TextInput
+                            style={styles.textInput}
+                            multiline={true}
+                            numberOfLines={6}
+                            placeholder="Escrever Feedback..."
+                            onChangeText={(mensagem_feedback) => this.setState({ mensagem_feedback })}
+                            value={this.state.mensagem_feedback}
+                        />
+                    </SafeAreaView>
+                    <View style={styles.containerButtonFeedback}>
+                        <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.state.mensagem_feedback ? this.post_firebase(":blush:") : ""}>
+                            <Text style={styles.textButton}><Emoji style={{ fontSize: 25 }} name={":blush:"} /></Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.state.mensagem_feedback ? this.post_firebase(":neutral_face:") : ""}>
+                            <Text style={styles.textButton}><Emoji style={{ fontSize: 25 }} name={":neutral_face:"} /></Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.itemFeedbak} onPress={() => this.state.mensagem_feedback ? this.post_firebase(":confused:") : ""}>
+                            <Text style={styles.textButton}><Emoji style={{ fontSize: 25 }} name={":confused:"} /></Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View
+                        style={styles.containerList}>
+                        <Text style={{ fontSize: 20, alignSelf: 'center' }}>
+                            {"Ultimos Feedbacks Realizados: "}
+                        </Text>
+                        <FlatList
+                            data={this.state.data}
+                            keyExtractor={item => item.key}
+                            renderItem={({ item }) => {
+                                return (
+                                    <TouchableWithoutFeedback onPress={() => { }}>
+                                        <Feedback emoji={item.emoji} mensagem={item.mensagem} />
+                                    </TouchableWithoutFeedback>
+                                )
+                            }}
+                        />
+                    </View>
                 </View>
-            </View>
-        )
+            )
+        }
+
     }
 }
 
