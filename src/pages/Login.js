@@ -4,6 +4,7 @@ import database from '@react-native-firebase/database'
 import {
   View,
   Text,
+  Image,
   TextInput,
   SafeAreaView,
   ScrollView,
@@ -57,6 +58,8 @@ class Login extends Component {
 
   }
   requestPerfil = tokenAcesso => {
+
+
     this.setState({ token: tokenAcesso })
     var data2 = new FormData()
     data2.append('wstoken', this.state.token)
@@ -99,7 +102,7 @@ class Login extends Component {
   }
 
   render() {
-
+    const image = require('../images/logo-ufrpe.png')
     return (
       <Fragment>
         <StatusBar backgroundColor='#0f0550' />
@@ -115,6 +118,7 @@ class Login extends Component {
                 </Text>
               </View>
               <View style={styles.viewInput}>
+                <Image source={image}/>
                 <Text>LOGIN</Text>
                 <TextInput
                   style={styles.textInput}
