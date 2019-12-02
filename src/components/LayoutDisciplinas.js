@@ -16,7 +16,8 @@ class LayoutDisciplinas extends React.Component {
     this.props.navigation.navigate('Disciplina', {
       name: item.fullname,
       disciplina_id: item.id,
-      userid: this.props.navigation.getParam('userid',[])
+      userid: this.props.navigation.getParam('userid',[]),
+      professor: this.props.navigation.getParam('professor','')
     })
   }
   render() {

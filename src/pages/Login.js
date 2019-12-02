@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import styles from '../styles/Default'
-
+import database from '@react-native-firebase/database'
 import {
   View,
   Text,
@@ -9,7 +9,8 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  Alert
 } from 'react-native';
 
 
@@ -22,6 +23,7 @@ class Login extends Component {
       senha: '',
       error: '',
       token: '',
+      responseJSON: '',
       userid: '',
       professor: false,
     }
@@ -35,7 +37,7 @@ class Login extends Component {
     this.setState({ senha: '' })
     this.setState({ usuario: '' })
     //limpar state de token e userid também?
-    if(!erro)
+    if (!erro)
       this.setState({ error: '' })
 
   }
@@ -44,7 +46,16 @@ class Login extends Component {
     this.limpaStates(erro)
 
   }
+  navega = responseJSON => {
+    const { navigate } = this.props.navigation
+    navigate('Perfil', {
+      name: responseJSON.firstname,
+      userid: responseJSON.userid,
+      token: this.state.token,
+      professor: this.state.professor
+    })
 
+  }
   requestPerfil = tokenAcesso => {
     this.setState({ token: tokenAcesso })
     var data2 = new FormData()
@@ -55,15 +66,18 @@ class Login extends Component {
       body: data2
     })
       .then((response) => response.json())
-      .then(responseJSON => {
-        const { navigate } = this.props.navigation
+      .then(async responseJSON => {
+        this.setState({ responseJSON })
         this.limpaStates()
-        navigate('Perfil', {
-          name: responseJSON.firstname,
-          userid: responseJSON.userid,
-          token: this.state.token
+        let dbRef = database().ref('professores/')
+        await dbRef.once('value', dataSnapshot => {
+          dataSnapshot.forEach(child => {
+            if (child.val().usuario == responseJSON.username) {
+              this.setState({ professor: true })
+            }
+          })
         })
-      })
+      }).then(() => this.navega(this.state.responseJSON))
   }
 
   loginAva = () => {

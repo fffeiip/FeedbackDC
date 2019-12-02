@@ -43,14 +43,6 @@ export default class Perfil extends Component {
             .catch(error => console.log(error))
     }
 
-    gotoDisciplinas = () => {
-        const { navigation } = this.props
-        navigation.navigate('Layout', {
-            disciplinas: this.state.disciplinas,
-            userid: this.state.userid
-        })
-    }
-
     formatString = str => {
         return str
             .replace(/(\B)[^ ]*/g, match => (match.toLowerCase()))
