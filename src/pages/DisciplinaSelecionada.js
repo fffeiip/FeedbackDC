@@ -8,11 +8,14 @@ import {
     FlatList,
     TouchableWithoutFeedback,
     TouchableOpacity,
+    ScrollView
 } from 'react-native'
 import database from '@react-native-firebase/database'
 import styles from '../styles/Default'
 import Header from '../components/Header'
 import Feedback from '../components/Feedback'
+import Resumo from '../components/Resumo'
+
 import { TextInput } from 'react-native-gesture-handler'
 
 class DisciplinaSelecionada extends Component {
@@ -79,7 +82,7 @@ class DisciplinaSelecionada extends Component {
         let feedback = {
             mensagem: this.state.mensagem_feedback,
             emoji: emoji,
-            dataFeedback: hoje.getDate() +'-'+hoje.getMonth()+'-'+hoje.getFullYear()
+            dataFeedback: hoje.getDate() + '-' + hoje.getMonth() + '-' + hoje.getFullYear()
         }
         let dbRef = database().ref(`disciplina_id/${this.state.disciplina_id}/usuario_id/${this.state.userid}`)
 
@@ -99,26 +102,39 @@ class DisciplinaSelecionada extends Component {
     render() {
         if (this.state.professor) {
             return (
-                <View style={styles.container}>
+                <SafeAreaView style={styles.container}>
                     <Header navigation={this.props.navigation} titulo={this.state.titulo} />
-                    <View
-                        style={styles.containerList}>
-                        <Text style={{ fontSize: 20, alignSelf: 'center' }}>
-                            {"Ultimos Feedbacks Realizados: "}
-                        </Text>
-                        <FlatList
-                            data={this.state.data}
-                            keyExtractor={item => item.key}
-                            renderItem={({ item }) => {
-                                return (
-                                    <TouchableWithoutFeedback onPress={() => { }}>
-                                        <Feedback emoji={item.emoji} mensagem={item.mensagem} />
-                                    </TouchableWithoutFeedback>
-                                )
-                            }}
-                        />
-                    </View>
-                </View>
+                    <ScrollView>
+                        <Resumo />
+                        <Resumo />
+                        <Resumo />
+                        <View
+                            style={styles.containerList}>
+                            <Text style={{ fontSize: 20, alignSelf: 'center' }}>
+                                {"Ultimos Feedbacks Realizados: "}
+                            </Text>
+                            <View style={{ height: 300 }}>
+                                <ScrollView
+                                    nestedScrollEnabled={true}>
+                                    <FlatList
+
+                                        data={this.state.data}
+                                        keyExtractor={item => item.key}
+                                        renderItem={({ item }) => {
+                                            return (
+                                                <View>
+                                                    <TouchableWithoutFeedback onPress={() => { }}>
+                                                        <Feedback emoji={item.emoji} mensagem={item.mensagem} />
+                                                    </TouchableWithoutFeedback>
+                                                </View>
+                                            )
+                                        }}
+                                    />
+                                </ScrollView>
+                            </View>
+                        </View>
+                    </ScrollView>
+                </SafeAreaView>
             )
         } else {
             return (

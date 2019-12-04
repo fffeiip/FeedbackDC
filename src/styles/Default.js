@@ -67,7 +67,7 @@ export default StyleSheet.create({
         // padding: '1%'
     },
     containerButton: {
-        paddingVertical: '20%',
+        paddingVertical: '10%',
         alignItems: 'center'
     },
     containerButtonFeedback: {

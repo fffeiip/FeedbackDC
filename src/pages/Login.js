@@ -102,7 +102,7 @@ class Login extends Component {
   }
 
   render() {
-    const image = require('../images/logo-ufrpe.png')
+    const image = require('../images/ufrpe.png')
     return (
       <Fragment>
         <StatusBar backgroundColor='#0f0550' />
@@ -117,8 +117,12 @@ class Login extends Component {
                   FeedbackDC
                 </Text>
               </View>
+              <View style={{flex: 1}}>
+                <Image source={image}
+                resizeMode={'contain'}
+                style={{alignSelf:'center'}}/>
+              </View>
               <View style={styles.viewInput}>
-                <Image source={image}/>
                 <Text>LOGIN</Text>
                 <TextInput
                   style={styles.textInput}
