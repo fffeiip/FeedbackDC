@@ -20,8 +20,8 @@ class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      usuario: '',
-      senha: '',
+      usuario: 'andre.eribeiro',
+      senha: 'Felipebr13',
       error: '',
       token: '',
       responseJSON: '',
@@ -104,10 +104,10 @@ class Login extends Component {
   render() {
     const image = require('../images/ufrpe.png')
     return (
-      <Fragment>
+      <Fragment >
         <StatusBar backgroundColor='#0f0550' />
         <SafeAreaView>
-          <ScrollView>
+          <ScrollView >
             <KeyboardAvoidingView
               style={{ flex: 1 }}
               behavior='position'
@@ -117,20 +117,18 @@ class Login extends Component {
                   FeedbackDC
                 </Text>
               </View>
-              <View style={{flex: 1}}>
+              <View style={{ flex: 1 }}>
                 <Image source={image}
-                resizeMode={'contain'}
-                style={{alignSelf:'center'}}/>
+                  resizeMode={'contain'}
+                  style={{ alignSelf: 'center' }} />
               </View>
               <View style={styles.viewInput}>
-                <Text>LOGIN</Text>
                 <TextInput
                   style={styles.textInput}
                   onChangeText={usuario => this.setState({ usuario })}
                   value={this.state.usuario}
                   placeholder="Usuário">
                 </TextInput>
-                <Text>SENHA</Text>
                 <TextInput
                   style={styles.textInput}
                   onChangeText={senha => this.setState({ senha })}

@@ -24,12 +24,11 @@ export default StyleSheet.create({
         borderRadius: 8,
     },
     textInput: {
-        borderStyle: 'solid',
-        borderWidth: 1,
+        paddingTop: '5%',
+        borderBottomWidth: 1,
         borderRadius: 8,
         fontSize: 16,
         color: '#0f0550',
-        // padding: 10,
     },
     textArea: {
         fontSize: 40
@@ -40,8 +39,6 @@ export default StyleSheet.create({
         height: '30%'
     },
     containerList: {
-        // paddingVertical: 30,
-        // paddingHorizontal: 20
         flex: 1,
 
     },
@@ -57,22 +54,17 @@ export default StyleSheet.create({
     textFeedback: {
         textAlign: 'left',
         fontSize: 16,
-        // alignSelf: "center",
         color: '#ffffff'
     },
     header: {
-        // flexDirection: 'row',
         backgroundColor: '#0f0550',
         alignItems: 'flex-end',
-        // padding: '1%'
     },
     containerButton: {
         paddingVertical: '10%',
         alignItems: 'center'
     },
     containerButtonFeedback: {
-
-        // paddingVertical: 30,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',

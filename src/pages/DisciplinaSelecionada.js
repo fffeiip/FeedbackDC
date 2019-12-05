@@ -14,7 +14,7 @@ import database from '@react-native-firebase/database'
 import styles from '../styles/Default'
 import Header from '../components/Header'
 import Feedback from '../components/Feedback'
-import Resumo from '../components/Resumo'
+import TimeLineFeedbacks from '../components/TimeLineFeedbacks'
 
 import { TextInput } from 'react-native-gesture-handler'
 
@@ -105,9 +105,7 @@ class DisciplinaSelecionada extends Component {
                 <SafeAreaView style={styles.container}>
                     <Header navigation={this.props.navigation} titulo={this.state.titulo} />
                     <ScrollView>
-                        <Resumo />
-                        <Resumo />
-                        <Resumo />
+                        <TimeLineFeedbacks data={this.state.data}/>
                         <View
                             style={styles.containerList}>
                             <Text style={{ fontSize: 20, alignSelf: 'center' }}>
