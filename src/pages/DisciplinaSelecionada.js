@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import Emoji from 'react-native-emoji';
+import {
+    LineChart,
+    PieChart,
+} from "react-native-chart-kit";
 
 import {
     View,
@@ -8,13 +12,14 @@ import {
     FlatList,
     TouchableWithoutFeedback,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    Dimensions
 } from 'react-native'
 import database from '@react-native-firebase/database'
 import styles from '../styles/Default'
 import Header from '../components/Header'
 import Feedback from '../components/Feedback'
-import TimeLineFeedbacks from '../components/TimeLineFeedbacks'
+// import TimeLineFeedbacks from '../components/TimeLineFeedbacks'
 
 import { TextInput } from 'react-native-gesture-handler'
 
@@ -29,7 +34,8 @@ class DisciplinaSelecionada extends Component {
             disciplina_id: this.props.navigation.getParam('disciplina_id', []),
             userid: this.props.navigation.getParam('userid', []),
             professor: this.props.navigation.getParam('professor', ''),
-            data: ""
+            data: "",
+            sentimentos: [0, 0, 0]
 
         }
     }
@@ -74,6 +80,7 @@ class DisciplinaSelecionada extends Component {
             this.setState({
                 data: feedbacks.reverse()
             });
+            console.log("QUANTIDADE DE EMOJIS: " + this.contarEmoji() + this.state.sentimentos)
         });
     }
 
@@ -99,13 +106,86 @@ class DisciplinaSelecionada extends Component {
             console.log('error ', error)
         })
     }
+
+    contarEmoji = () => {
+        var blush = 0;
+        var neutral = 0;
+        var confused = 0;
+        var pos = this.state.data.indexOf(":blush:")
+        this.state.data.forEach(element => {
+            if (element.emoji == ":blush:") {
+                blush = blush + 1
+            } else if (element.emoji == ":neutral_face:") {
+                neutral = neutral + 1
+            } else if (element.emoji == ":confused:") {
+                confused = confused + 1
+            }
+        })
+
+        var emojisFeedback = [blush, neutral, confused]
+        this.setState({
+            sentimentos: emojisFeedback
+        })
+        return emojisFeedback
+    }
+
     render() {
         if (this.state.professor) {
             return (
                 <SafeAreaView style={styles.container}>
                     <Header navigation={this.props.navigation} titulo={this.state.titulo} />
                     <ScrollView>
-                        <TimeLineFeedbacks data={this.state.data}/>
+                        <View style={{ paddingHorizontal: 5, borderBottomWidth: 10, borderTopWidth: 5, borderColor: '#53fd79', backgroundColor: '#aaa' }}>
+                            <Text style={{ fontSize: 20, alignSelf: 'center' }}>Todos Feedbacks</Text>
+                            <LineChart
+                                data={
+                                    {
+                                        labels: ["Feliz", "Indeciso", "Infeliz"],
+                                        datasets: [
+                                            {
+                                                data: [
+                                                    this.state.sentimentos[0],
+                                                    this.state.sentimentos[1],
+                                                    this.state.sentimentos[2],
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                                fontSize={10}
+                                width={Dimensions.get("window").width - 10} // from react-native
+                                height={220}
+                                chartConfig={{
+                                    backgroundColor: "#e26a00",
+                                    backgroundGradientFrom: "#15fb",
+                                    backgroundGradientTo: "#ffa726",
+                                    decimalPlaces: 0, // optional, defaults to 2dp
+                                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                    style: {
+                                        borderRadius: 16,
+                                    },
+                                    propsForDots: {
+                                        r: "5",
+                                        strokeWidth: "10",
+                                        stroke: "#ffa726"
+                                    }
+                                }}
+                                bezier
+                                style={{
+                                    marginVertical: 8,
+                                    borderRadius: 16
+                                }}
+                            />
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                                <Emoji style={{ fontSize: 25 }} name={":blush:"} />
+                                <Text style={{ fontSize: 20, alignSelf: 'center' }}>Feliz</Text>
+                                <Emoji style={{ fontSize: 25 }} name={":neutral_face:"} />
+                                <Text style={{ fontSize: 20, alignSelf: 'center' }}>Indeciso</Text>
+                                <Emoji style={{ fontSize: 25 }} name={":confused:"} />
+                                <Text style={{ fontSize: 20, alignSelf: 'center' }}>Infeliz</Text>
+                            </View>
+                        </View>
                         <View
                             style={styles.containerList}>
                             <Text style={{ fontSize: 20, alignSelf: 'center' }}>
